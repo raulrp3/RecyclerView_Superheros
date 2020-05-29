@@ -1,6 +1,8 @@
 package com.example.recyclerviewapplication.Adapters
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewapplication.DetailAcitivity
 import com.example.recyclerviewapplication.MainActivity
 import com.example.recyclerviewapplication.Models.Superhero
 import com.example.recyclerviewapplication.R
@@ -51,7 +54,11 @@ class SuperheroAdapter(
             ivAvatar.loadUrl(superhero.image);
 
             itemView.setOnClickListener {
-                Toast.makeText(context, "Superhero: " + superhero.superhero, Toast.LENGTH_SHORT).show();
+                val json: String = superhero.toJson();
+
+                val intent: Intent = Intent(context, DetailAcitivity::class.java);
+                intent.putExtra("superhero", json);
+                context.startActivity(intent);
             }
         }
 
