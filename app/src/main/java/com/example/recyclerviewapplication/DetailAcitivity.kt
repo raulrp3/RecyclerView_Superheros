@@ -11,11 +11,11 @@ import kotlinx.android.synthetic.main.activity_detail_acitivity.*
 
 class DetailAcitivity : AppCompatActivity() {
 
-    lateinit var ivAvatarDetail: ImageView
-    lateinit var tvSuperheroDetail: TextView
-    lateinit var tvRealNameDetail: TextView
-    lateinit var tvPublisherDetail: TextView
-    lateinit var superhero: Superhero;
+    private lateinit var ivAvatarDetail: ImageView
+    private lateinit var tvSuperheroDetail: TextView
+    private lateinit var tvRealNameDetail: TextView
+    private lateinit var tvPublisherDetail: TextView
+    private lateinit var superhero: Superhero;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
