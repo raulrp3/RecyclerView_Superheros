@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewapplication.Adapters.SuperheroAdapter
+import com.example.recyclerviewapplication.Helpers.SwipeToDeleteCallback
 import com.example.recyclerviewapplication.Models.Superhero
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -39,6 +41,16 @@ class MainActivity : AppCompatActivity() {
         rvSuperherosList.layoutManager = LinearLayoutManager(this);
 
         rvSuperherosList.adapter = SuperheroAdapter(superheros, this);
+
+        val swipeHandler = object : SwipeToDeleteCallback(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = rvSuperherosList.adapter as SuperheroAdapter;
+                adapter.removeAt(viewHolder.adapterPosition);
+            }
+        }
+
+        val itemTouchHelper: ItemTouchHelper = ItemTouchHelper(swipeHandler);
+        itemTouchHelper.attachToRecyclerView(rvSuperherosList);
 
         superhero = Superhero("", "", "", "");
     }

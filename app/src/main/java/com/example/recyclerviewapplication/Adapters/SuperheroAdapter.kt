@@ -66,4 +66,9 @@ class SuperheroAdapter(
             Picasso.with(context).load(url).into(this);
         }
     }
+
+    fun removeAt(position: Int) {
+        superheros.removeAt(position);
+        notifyItemRemoved(position);
+    }
 }
